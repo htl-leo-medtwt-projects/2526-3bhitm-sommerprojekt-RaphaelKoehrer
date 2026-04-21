@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warenkorb | KöhrerGainz</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/api.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/discount.js" defer></script>
+    <script src="js/cart.js" defer></script>
+    <script src="js/animations.js" defer></script>
+    <script src="js/cookie.js" defer></script>
+</head>
+<body>
+
+            
+    <nav class="navbar">
+    <div class="container">
+        <button class="hamburger" aria-label="Menü">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-current-page">HOME</div>
+        <a href="index.html" class="nav-logo">
+            <span>KÖHRER</span><span class="logo-accent">GAINZ</span>
+        </a>
+        <a href="cart.html" class="nav-icon-btn" title="Warenkorb">
+            🛒
+            <span class="cart-count" data-count="0">0</span>
+        </a>
+        <a href="auth.html" class="nav-icon-btn nav-user-btn" title="Login">👤</a>
+    </div>
+    <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="products.html">Produkte</a>
+        <a href="calculator.html">Rechner</a>
+        <a href="faq.html">FAQ</a>
+        <a href="ueber-uns.html">Über uns</a>
+    </div>
+</nav>
+<button class="theme-toggle" onclick="App.toggleTheme()" title="Theme wechseln" aria-label="Theme">☀️</button>
+    
+
+    
+    <div class="page-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>🛒 Dein <span class="text-accent">Warenkorb</span></h1>
+            </div>
+
+            <div class="cart-layout">
+                
+                <div class="cart-items" id="cartItems">
+                    <div style="text-align: center; padding: 2rem;">
+                        <div class="spinner" style="margin: 0 auto;"></div>
+                    </div>
+                </div>
+
+                
+                <div class="cart-summary" id="cartSummary">
+                    <h3>Bestellübersicht</h3>
+
+                    <div class="summary-row">
+                        <span>Zwischensumme</span>
+                        <span id="cartSubtotal">€0.00</span>
+                    </div>
+                    <div class="summary-row" id="discountRow" style="display: none;"></div>
+                    <div class="summary-row">
+                        <span>Versand</span>
+                        <span id="cartShipping">€4.99</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Gesamt</span>
+                        <span id="cartTotal">€0.00</span>
+                    </div>
+
+                    
+                    <div class="discount-input-group">
+                        <input type="text" id="discountCode" placeholder="Rabattcode eingeben...">
+                        <button class="btn btn-outline btn-sm" id="applyDiscountBtn">Einlösen</button>
+                    </div>
+
+                    <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+                        🚚 Kostenloser Versand ab €50
+                    </div>
+
+                    <a href="checkout.html" class="btn btn-primary w-100" id="checkoutBtn">
+                        Zur Kasse →
+                    </a>
+
+                    <a href="products.html" style="display: block; text-align: center; margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+                        ← Weiter einkaufen
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo"><span>KÖHRER</span><span class="logo-accent">GAINZ</span></div>
+                    <p>Premium Fitness-Supplements für maximale Ergebnisse. Made in Austria. 💪</p>
+                    <div class="footer-social">
+                        <a href="#" title="Instagram">📸</a>
+                        <a href="#" title="TikTok">🎵</a>
+                        <a href="#" title="YouTube">🎬</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="products.html">Alle Produkte</a></li>
+                        <li><a href="products.html?cat=protein">Protein</a></li>
+                        <li><a href="products.html?cat=creatin">Creatin</a></li>
+                        <li><a href="cart.html">Warenkorb</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Info</h4>
+                    <ul>
+                        <li><a href="calculator.html">Rechner</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="ueber-uns.html">Über uns</a></li>
+                        <li><a href="versand.html">Versand &amp; Lieferung</a></li>
+                        <li><a href="kontakt.html">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Rechtliches</h4>
+                    <ul>
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                        <li><a href="agb.html">AGB</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2024 KöhrerGainz. Alle Rechte vorbehalten.</span>
+                <span>Mit ❤️ in Österreich entwickelt</span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+
+
+
+
+
