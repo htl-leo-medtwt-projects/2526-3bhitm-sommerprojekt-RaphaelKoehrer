@@ -69,7 +69,7 @@
             'profile.html': 'Profil',
             'order-success.html': 'Danke',
             'faq.html': 'FAQ',
-            'ueber-uns.html': 'Ãœber uns',
+            'ueber-uns.html': 'Über uns',
             'kontakt.html': 'Kontakt',
             'impressum.html': 'Impressum',
             'datenschutz.html': 'Datenschutz',
@@ -102,9 +102,9 @@
         }
 
         const icons = {
-            success: 'âœ…',
-            error: 'âŒ',
-            info: 'ðŸ’ª'
+            success: '',
+            error: '',
+            info: ''
         };
 
         const toast = document.createElement('div');
@@ -182,7 +182,7 @@
 
                 const result = DataStore.subscribeNewsletter(email);
                 if (result.success) {
-                    showToast('Newsletter abonniert! Willkommen bei der KÃ¶hrer-Family! ðŸ’ª', 'success');
+                    showToast('Newsletter abonniert! Willkommen bei der Köhrer-Family!', 'success');
                     form.reset();
                 } else {
                     showToast(result.message, 'info');
