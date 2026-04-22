@@ -16,7 +16,7 @@
     function updateThemeIcon(theme) {
         const btn = document.querySelector('.theme-toggle');
         if (btn) {
-            btn.innerHTML = theme === 'dark' ? 'â˜€ï¸' : 'ðŸŒ™';
+            btn.innerHTML = theme === 'dark' ? '🌙' : '☀️';
             btn.title = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
         }
     }
@@ -112,7 +112,7 @@
         toast.innerHTML = `
             <span class="toast-icon">${icons[type] || icons.info}</span>
             <span>${message}</span>
-            <button class="toast-close" onclick="this.parentElement.remove()">âœ•</button>
+            <button class="toast-close" onclick="this.parentElement.remove()">✕</button>
         `;
 
         container.appendChild(toast);
@@ -196,11 +196,11 @@
         const userBtn = document.querySelector('.nav-user-btn');
         if (userBtn) {
             if (user) {
-                userBtn.innerHTML = `<span>ðŸ‘¤</span>`;
+                userBtn.innerHTML = `<span>👤</span>`;
                 userBtn.title = user.name;
                 userBtn.onclick = () => window.location.href = 'profile.html';
             } else {
-                userBtn.innerHTML = `<span>ðŸ‘¤</span>`;
+                userBtn.innerHTML = `<span>👤</span>`;
                 userBtn.title = 'Login / Registrieren';
                 userBtn.onclick = () => window.location.href = 'auth.html';
             }
