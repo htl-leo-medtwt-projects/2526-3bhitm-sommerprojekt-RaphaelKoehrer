@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bestellung erfolgreich! | KöhrerGainz</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+            <!-- NAVIGATION -->
+    <nav class="navbar">
+    <div class="container">
+        <button class="hamburger" aria-label="Menü">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-current-page">HOME</div>
+        <a href="index.html" class="nav-logo">
+            <span>KÖHRER</span><span class="logo-accent">GAINZ</span>
+        </a>
+        <a href="cart.html" class="nav-icon-btn" title="Warenkorb">
+            🛒
+            <span class="cart-count" data-count="0">0</span>
+        </a>
+        <a href="auth.html" class="nav-icon-btn nav-user-btn" title="Login">👤</a>
+    </div>
+    <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="products.html">Produkte</a>
+        <a href="calculator.html">Rechner</a>
+        <a href="faq.html">FAQ</a>
+        <a href="ueber-uns.html">Über uns</a>
+    </div>
+</nav>
+<button class="theme-toggle" onclick="App.toggleTheme()" title="Theme wechseln" aria-label="Theme">☀️</button>
+    
+
+    <!-- CONTENT -->
+    <div class="page-content">
+        <div class="container">
+            <div class="order-success" id="orderSuccessContent">
+                <div class="success-icon">✅</div>
+                <h1>Bestellung <span class="text-accent">erfolgreich!</span></h1>
+                <p>Danke für deine Bestellung bei KöhrerGainz! Deine Gainz sind auf dem Weg zu dir. 💪</p>
+
+                <div class="order-details-card" id="orderDetails"></div>
+
+                <div style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="products.html" class="btn btn-primary">Weiter shoppen</a>
+                    <a href="index.html" class="btn btn-secondary">Zur Startseite</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo"><span>KÖHRER</span><span class="logo-accent">GAINZ</span></div>
+                    <p>Premium Fitness-Supplements für maximale Ergebnisse. Made in Austria. 💪</p>
+                    <div class="footer-social">
+                        <a href="#" title="Instagram">📸</a>
+                        <a href="#" title="TikTok">🎵</a>
+                        <a href="#" title="YouTube">🎬</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="products.html">Alle Produkte</a></li>
+                        <li><a href="products.html?cat=protein">Protein</a></li>
+                        <li><a href="products.html?cat=creatin">Creatin</a></li>
+                        <li><a href="cart.html">Warenkorb</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Info</h4>
+                    <ul>
+                        <li><a href="calculator.html">Rechner</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="ueber-uns.html">Über uns</a></li>
+                        <li><a href="versand.html">Versand &amp; Lieferung</a></li>
+                        <li><a href="kontakt.html">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Rechtliches</h4>
+                    <ul>
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                        <li><a href="agb.html">AGB</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2024 KöhrerGainz. Alle Rechte vorbehalten.</span>
+                <span>Mit ❤️ in Österreich entwickelt</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const orderData = sessionStorage.getItem('kg_last_order');
+            const detailsEl = document.getElementById('orderDetails');
+
+            if (orderData && detailsEl) {
+                try {
+                    const order = JSON.parse(orderData);
+                    detailsEl.innerHTML = `
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);">
+                            <span style="font-weight: 600;">Bestellung #${order.id}</span>
+                            <span style="color: var(--text-muted);">${new Date(order.createdAt).toLocaleDateString('de-AT')}</span>
+                        </div>
+                        ${order.items.map(item => `
+                            <div style="display: flex; justify-content: space-between; padding: 0.3rem 0; font-size: 0.9rem;">
+                                <span>${item.productName} x${item.quantity}</span>
+                                <span>€${(item.price * item.quantity).toFixed(2)}</span>
+                            </div>
+                        `).join('')}
+                        <div style="display: flex; justify-content: space-between; margin-top: 1rem; padding-top: 0.5rem; border-top: 2px solid var(--border); font-weight: 700; font-family: var(--font-heading); font-size: 1.2rem;">
+                            <span>Gesamt</span>
+                            <span>€${order.total.toFixed(2)}</span>
+                        </div>
+                        ${order.shipping ? `
+                            <div style="margin-top: 1rem; padding-top: 0.5rem; border-top: 1px solid var(--border); font-size: 0.85rem; color: var(--text-secondary);">
+                                <strong>Lieferung an:</strong><br>
+                                ${order.shipping.name}<br>
+                                ${order.shipping.address}<br>
+                                ${order.shipping.zip} ${order.shipping.city}, ${order.shipping.country || 'Österreich'}
+                            </div>
+                        ` : ''}
+                    `;
+
+                    // Backend: Here you would send confirmation email
+                    // via POST /api/mail/order-confirmation.php
+                } catch(e) {
+                    detailsEl.innerHTML = '<p style="color: var(--text-muted);">Bestelldetails konnten nicht geladen werden.</p>';
+                }
+            } else if (detailsEl) {
+                document.getElementById('orderSuccessContent').innerHTML = `
+                    <div class="empty-state">
+                        <div class="empty-icon">🤔</div>
+                        <h3>Keine Bestellung gefunden</h3>
+                        <p>Es wurde keine aktuelle Bestellung gefunden.</p>
+                        <a href="products.html" class="btn btn-primary">Zum Shop</a>
+                    </div>
+                `;
+            }
+        });
+    </script>
+
+    <script src="js/animations.js"></script>
+    <script src="js/cookie.js"></script>
+</body>
+</html>
+
+
+
+
+

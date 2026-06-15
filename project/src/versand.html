@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Versand &amp; Lieferung | KöhrerGainz</title>
+    <meta name="description" content="Alle Infos zu Versandkosten, Lieferzeiten und Rückgabe bei KöhrerGainz.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+    <div class="container">
+        <button class="hamburger" aria-label="Menü">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-current-page">HOME</div>
+        <a href="index.html" class="nav-logo">
+            <span>KÖHRER</span><span class="logo-accent">GAINZ</span>
+        </a>
+        <a href="cart.html" class="nav-icon-btn" title="Warenkorb">
+            🛒
+            <span class="cart-count" data-count="0">0</span>
+        </a>
+        <a href="auth.html" class="nav-icon-btn nav-user-btn" title="Login">👤</a>
+    </div>
+    <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="products.html">Produkte</a>
+        <a href="calculator.html">Rechner</a>
+        <a href="faq.html">FAQ</a>
+        <a href="ueber-uns.html">Über uns</a>
+    </div>
+</nav>
+<button class="theme-toggle" onclick="App.toggleTheme()" title="Theme wechseln" aria-label="Theme">☀️</button>
+
+    <div class="legal-hero">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <span>Versand &amp; Lieferung</span>
+            </nav>
+            <h1>Versand &amp; Lieferung</h1>
+            <p>Schnell, zuverlässig und transparent – deine Bestellung kommt sicher an.</p>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="container">
+
+            <!-- Versandkosten Karten -->
+            <div class="section-header">
+                <h2>📦 Versandoptionen</h2>
+            </div>
+            <div class="versand-grid">
+                <div class="versand-card card-tilt reveal-up">
+                    <div class="versand-icon">🚚</div>
+                    <h3>Standard</h3>
+                    <div class="versand-price">€ 4,90</div>
+                    <p>1–3 Werktage in Österreich</p>
+                    <div class="versand-carrier">Österreichische Post / DPD</div>
+                </div>
+                <div class="versand-card versand-card--highlight card-tilt reveal-up" style="--delay: 0.1s;">
+                    <div class="versand-badge">BELIEBT</div>
+                    <div class="versand-icon">⚡</div>
+                    <h3>Express</h3>
+                    <div class="versand-price">€ 11,90</div>
+                    <p>Nächster Werktag (bei Bestellung bis 14:00)</p>
+                    <div class="versand-carrier">DHL Express</div>
+                </div>
+                <div class="versand-card card-tilt reveal-up" style="--delay: 0.2s;">
+                    <div class="versand-icon">🌟</div>
+                    <h3>Kostenlos</h3>
+                    <div class="versand-price">€ 0,–</div>
+                    <p>Ab € 50 Bestellwert in Österreich &amp; Deutschland</p>
+                    <div class="versand-carrier">Standard-Versandweg</div>
+                </div>
+                <div class="versand-card card-tilt reveal-up" style="--delay: 0.3s;">
+                    <div class="versand-icon">🇪🇺</div>
+                    <h3>Ausland</h3>
+                    <div class="versand-price">€ 9,90</div>
+                    <p>Deutschland, Schweiz: 2–5 Werktage</p>
+                    <div class="versand-carrier">DHL / DPD International</div>
+                </div>
+            </div>
+
+            <!-- Lieferzeitraum -->
+            <div class="section-header" style="margin-top: 4rem;">
+                <h2>🕐 So läuft deine Bestellung ab</h2>
+            </div>
+            <div class="versand-timeline">
+                <div class="versand-step reveal-up">
+                    <div class="versand-step-num">1</div>
+                    <div class="versand-step-content">
+                        <h3>Bestellung aufgeben</h3>
+                        <p>Du wählst deine Produkte und bezahlst sicher online. Sofortige Auftragsbestätigung per E-Mail.</p>
+                    </div>
+                </div>
+                <div class="versand-arrow">→</div>
+                <div class="versand-step reveal-up" style="--delay: 0.1s;">
+                    <div class="versand-step-num">2</div>
+                    <div class="versand-step-content">
+                        <h3>Lagerkommissionierung</h3>
+                        <p>Unser Team packt deine Bestellung innerhalb von 4 Stunden (Mo–Fr, 08:00–16:00 Uhr).</p>
+                    </div>
+                </div>
+                <div class="versand-arrow">→</div>
+                <div class="versand-step reveal-up" style="--delay: 0.2s;">
+                    <div class="versand-step-num">3</div>
+                    <div class="versand-step-content">
+                        <h3>Übergabe an Versand</h3>
+                        <p>Abholung durch den Versanddienstleister. Du erhältst eine E-Mail mit Trackingnummer.</p>
+                    </div>
+                </div>
+                <div class="versand-arrow">→</div>
+                <div class="versand-step reveal-up" style="--delay: 0.3s;">
+                    <div class="versand-step-num">4</div>
+                    <div class="versand-step-content">
+                        <h3>Lieferung</h3>
+                        <p>Deine Bestellung kommt an! Standard: 1–3 Werktage. Du kannst die Lieferung per App verfolgen.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rückgabe -->
+            <div class="section-header" style="margin-top: 4rem;">
+                <h2>↩️ Rücksendung &amp; Widerruf</h2>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div class="versand-info-card reveal-left">
+                    <h3>✅ Was kann zurückgeschickt werden?</h3>
+                    <ul>
+                        <li>Ungeöffnete Produkte innerhalb von 14 Tagen</li>
+                        <li>Beschädigte oder fehlerhafte Lieferungen (jederzeit)</li>
+                        <li>Falsch gelieferter Artikel</li>
+                    </ul>
+                </div>
+                <div class="versand-info-card reveal-right">
+                    <h3>❌ Was ist vom Widerruf ausgeschlossen?</h3>
+                    <ul>
+                        <li>Geöffnete Nahrungsergänzungsmittel (Hygienegründe)</li>
+                        <li>Produkte nach Ablauf der 14-Tage-Frist</li>
+                        <li>Personalisierte Bestellungen</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-box" style="margin-top: 2rem;">
+                <strong>📋 Rücksendung einleiten:</strong> Kontaktiere uns unter <a href="mailto:widerruf@koehrergainz.at">widerruf@koehrergainz.at</a> mit deiner Bestellnummer. Wir senden dir ein kostenloses Rücksendelabel für Defektware zu. Bei regulärem Widerruf trägt der Kunde die Rücksendekosten (ca. € 4,90).
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo"><span>KÖHRER</span><span class="logo-accent">GAINZ</span></div>
+                    <p>Premium Fitness-Supplements für maximale Ergebnisse. Made in Austria. 💪</p>
+                    <div class="footer-social">
+                        <a href="#" title="Instagram">📸</a>
+                        <a href="#" title="TikTok">🎵</a>
+                        <a href="#" title="YouTube">🎬</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="products.html">Alle Produkte</a></li>
+                        <li><a href="products.html?cat=protein">Protein</a></li>
+                        <li><a href="products.html?cat=creatin">Creatin</a></li>
+                        <li><a href="cart.html">Warenkorb</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Info</h4>
+                    <ul>
+                        <li><a href="calculator.html">Rechner</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="ueber-uns.html">Über uns</a></li>
+                        <li><a href="versand.html" class="active">Versand &amp; Lieferung</a></li>
+                        <li><a href="kontakt.html">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Rechtliches</h4>
+                    <ul>
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                        <li><a href="agb.html">AGB</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2024 KöhrerGainz. Alle Rechte vorbehalten.</span>
+                <span>Mit ❤️ in Österreich entwickelt</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/cookie.js"></script>
+
+</body>
+</html>
+
+
+
+

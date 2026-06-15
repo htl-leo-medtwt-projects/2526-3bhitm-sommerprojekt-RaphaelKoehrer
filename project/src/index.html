@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="KöhrerGainz – Der Kraftstoff für echte Maschinen. Premium Supplements, Protein, Creatin & mehr.">
+    <title>KöhrerGainz – Der Kraftstoff für echte Maschinen</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <button class="hamburger" aria-label="Menü">
+                <span></span><span></span><span></span>
+            </button>
+            <div class="nav-current-page">HOME</div>
+            <a href="index.html" class="nav-logo">
+                <span>KÖHRER</span><span class="logo-accent">GAINZ</span>
+            </a>
+            <a href="cart.html" class="nav-icon-btn" title="Warenkorb">
+                🛒
+                <span class="cart-count" data-count="0">0</span>
+            </a>
+            <a href="auth.html" class="nav-icon-btn nav-user-btn" title="Login">👤</a>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="products.html">Produkte</a>
+            <a href="calculator.html">Rechner</a>
+            <a href="faq.html">FAQ</a>
+            <a href="ueber-uns.html">Über uns</a>
+        </div>
+    </nav>
+    <button class="theme-toggle" onclick="App.toggleTheme()" title="Theme wechseln" aria-label="Theme">☀️</button>
+
+    <section class="hero">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content">
+            <div class="hero-badge">🔥 Premium Supplements seit 2024</div>
+            <h1>Hol dir die <span class="highlight typewriter-cursor" id="hero-typewriter">KöhrerGainz!</span></h1>
+            <p>Der Kraftstoff für echte Maschinen. Premium Supplements, echte Ergebnisse, kein Blabla.</p>
+            <div class="hero-buttons">
+                <a href="products.html" class="btn btn-primary btn-lg">Jetzt shoppen 💪</a>
+                <a href="#kohrers-choice" class="btn btn-secondary btn-lg">Köhrer's Choice ⭐</a>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="hero-stat-value" data-count="1200" data-suffix="+">0</span>
+                <span class="hero-stat-label">Kunden</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+                <span class="hero-stat-value" data-count="50" data-suffix="+">0</span>
+                <span class="hero-stat-label">Produkte</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+                <span class="hero-stat-value" data-count="98" data-suffix="%">0</span>
+                <span class="hero-stat-label">Zufrieden</span>
+            </div>
+            <div class="hero-stat-divider"></div>
+            <div class="hero-stat">
+                <span class="hero-stat-value" data-count="4" data-suffix=".9★">0</span>
+                <span class="hero-stat-label">Bewertung</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="features-grid reveal">
+                <div class="feature-card"><div class="feature-icon">🏆</div><h3>Premium Qualität</h3><p>Nur die besten Inhaltsstoffe, laborgeprüft und klar deklariert.</p></div>
+                <div class="feature-card"><div class="feature-icon">🚚</div><h3>Schneller Versand</h3><p>Direkt aus Österreich nach AT und DE.</p></div>
+                <div class="feature-card"><div class="feature-icon">💪</div><h3>Für echte Progression</h3><p>Produkte für Muskelaufbau, Kraft und Fokus im Training.</p></div>
+                <div class="feature-card"><div class="feature-icon">🔒</div><h3>Sicher einkaufen</h3><p>SSL-gesichert und transparent.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="kohrers-choice">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Köhrer's <span class="highlight">Choice</span> ⭐</h2>
+                <p>Unsere Bestseller für maximale Gainz.</p>
+            </div>
+            <div class="products-grid" id="featuredProducts"></div>
+            <div style="text-align:center; margin-top:2rem;">
+                <a href="products.html" class="btn btn-outline">Alle Produkte anzeigen →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: var(--bg-secondary);">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Shop by <span class="highlight">Kategorie</span></h2>
+                <p>Von Whey bis Booster – finde schnell was du brauchst.</p>
+            </div>
+            <div class="categories-grid" id="categoriesGrid"></div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="cta-banner reveal">
+                <h2>🦍 BEAST MODE Bundle – Spare 20%!</h2>
+                <p>Das perfekte Starter-Bundle für deinen nächsten Trainingsblock.</p>
+                <a href="product.html?id=6" class="btn btn-primary btn-lg">Bundle ansehen</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container" style="text-align:center;">
+            <h2>Dein persönlicher <span class="highlight">Rechner</span></h2>
+            <p style="color: var(--text-secondary); margin: 0.8rem 0 1.5rem;">Kalorien, Protein, Creatin, BMI und Wasserbedarf.</p>
+            <a href="calculator.html" class="btn btn-primary btn-lg">Zum Rechner 🧮</a>
+        </div>
+    </section>
+
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2>Join the <span class="text-accent">Köhrer-Family</span> 💌</h2>
+                <p>Aktionen, neue Produkte und exklusive Deals direkt in dein Postfach.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Deine E-Mail Adresse" required>
+                    <button type="submit" class="btn btn-primary">Abonnieren 🔥</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo"><span>KÖHRER</span><span class="logo-accent">GAINZ</span></div>
+                    <p>Der Kraftstoff für echte Maschinen.</p>
+                </div>
+                <div class="footer-links"><h4>Shop</h4><ul><li><a href="products.html">Alle Produkte</a></li><li><a href="cart.html">Warenkorb</a></li></ul></div>
+                <div class="footer-links"><h4>Info</h4><ul><li><a href="calculator.html">Rechner</a></li><li><a href="faq.html">FAQ</a></li><li><a href="kontakt.html">Kontakt</a></li></ul></div>
+                <div class="footer-links"><h4>Rechtliches</h4><ul><li><a href="impressum.html">Impressum</a></li><li><a href="datenschutz.html">Datenschutz</a></li><li><a href="agb.html">AGB</a></li></ul></div>
+            </div>
+            <div class="footer-bottom"><span>&copy; 2024 KöhrerGainz. Alle Rechte vorbehalten.</span><span>Mit ❤️ in Österreich entwickelt</span></div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/cookie.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Products.renderFeatured('featuredProducts');
+            Products.renderCategories('categoriesGrid');
+            if (typeof Animations !== 'undefined') {
+                Animations.initParticles('hero-canvas');
+                Animations.typeWriter('hero-typewriter', ['KöhrerGainz!', 'Beast Mode!', 'Deine Gainz!']);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,52 +1,60 @@
 services:
-  db:
-    image: mysql:8.4
-    container_name: fitness_shop_db
-    restart: unless-stopped
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_DATABASE: fitness_shop
-      MYSQL_USER: fitness_user
-      MYSQL_PASSWORD: fitness_pass
+  web:
+    build: .
+    container_name: sommerprojekt_kohrer_web
     ports:
-      - "3306:3306"
+      - "8083:80"
     volumes:
-      - db_data:/var/lib/mysql
-      - ./database/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql:ro
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-prootpass"]
-      interval: 10s
-      timeout: 5s
-      retries: 10
-
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    container_name: fitness_shop_backend
-    restart: unless-stopped
+      - ./:/var/www/html
     depends_on:
       db:
         condition: service_healthy
-    volumes:
-      - ./frontend:/var/www/html
-      - ./backend/api:/var/www/html/api
-      - ./backend/config:/var/www/html/config
+    environment:
+      - DB_HOST=db
+      - DB_USER=fitness_user
+      - DB_PASSWORD=fitness_pass
+      - DB_NAME=fitness_shop
+    networks:
+      - kohrer_network
+
+  db:
+    image: mysql:8.4
+    container_name: sommerprojekt_kohrer_db
     ports:
-      - "8080:80"
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpass
+      - MYSQL_DATABASE=fitness_shop
+      - MYSQL_USER=fitness_user
+      - MYSQL_PASSWORD=fitness_pass
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "fitness_user", "-pfitness_pass"]
+      timeout: 10s
+      retries: 10
+      interval: 5s
+    networks:
+      - kohrer_network
 
   phpmyadmin:
     image: phpmyadmin:5-apache
-    container_name: fitness_shop_phpmyadmin
-    restart: unless-stopped
+    container_name: sommerprojekt_kohrer_phpmyadmin
+    ports:
+      - "8084:80"
+    environment:
+      - PMA_HOST=db
+      - PMA_PORT=3306
+      - PMA_ARBITRARY=1
     depends_on:
       db:
         condition: service_healthy
-    environment:
-      PMA_HOST: db
-      PMA_AUTH_TYPE: cookie
-    ports:
-      - "8082:80"
+    networks:
+      - kohrer_network
+
+networks:
+  kohrer_network:
+    driver: bridge
 
 volumes:
   db_data:

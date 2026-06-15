@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt | KöhrerGainz</title>
+    <meta name="description" content="Kontaktiere das KöhrerGainz Team – wir helfen dir gerne weiter.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+    <div class="container">
+        <button class="hamburger" aria-label="Menü">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-current-page">HOME</div>
+        <a href="index.html" class="nav-logo">
+            <span>KÖHRER</span><span class="logo-accent">GAINZ</span>
+        </a>
+        <a href="cart.html" class="nav-icon-btn" title="Warenkorb">
+            🛒
+            <span class="cart-count" data-count="0">0</span>
+        </a>
+        <a href="auth.html" class="nav-icon-btn nav-user-btn" title="Login">👤</a>
+    </div>
+    <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="products.html">Produkte</a>
+        <a href="calculator.html">Rechner</a>
+        <a href="faq.html">FAQ</a>
+        <a href="ueber-uns.html">Über uns</a>
+    </div>
+</nav>
+<button class="theme-toggle" onclick="App.toggleTheme()" title="Theme wechseln" aria-label="Theme">☀️</button>
+
+    <div class="legal-hero">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <span>Kontakt</span>
+            </nav>
+            <h1>Kontakt</h1>
+            <p>Wir sind für dich da – Antwort innerhalb von 24 Stunden garantiert.</p>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="container">
+            <div class="contact-grid">
+
+                <!-- Kontaktinfos -->
+                <div class="contact-info reveal-left">
+                    <h2>Schreib uns</h2>
+                    <p>Egal ob Fragen zu Produkten, Bestellungen oder Supplements – unser Team hilft dir schnell und kompetent weiter.</p>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <strong>E-Mail</strong>
+                            <p><a href="mailto:office@koehrergainz.at">office@koehrergainz.at</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <strong>Telefon</strong>
+                            <p><a href="tel:+431234567">+43 1 234 5678</a></p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <strong>Adresse</strong>
+                            <p>Musterstraße 12<br>1010 Wien, Österreich</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-hours">
+                        <h3>Öffnungszeiten Support</h3>
+                        <div class="hours-grid">
+                            <span>Mo – Fr</span><span>09:00 – 18:00 Uhr</span>
+                            <span>Samstag</span><span>10:00 – 14:00 Uhr</span>
+                            <span>Sonntag</span><span>Geschlossen</span>
+                        </div>
+                    </div>
+
+                    <div class="social-links" style="margin-top: 2rem;">
+                        <h3>Social Media</h3>
+                        <div style="display: flex; gap: 1rem; margin-top: 0.75rem;">
+                            <a href="#" class="social-link" title="Instagram">📸 Instagram</a>
+                            <a href="#" class="social-link" title="TikTok">🎵 TikTok</a>
+                            <a href="#" class="social-link" title="YouTube">🎬 YouTube</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kontaktformular -->
+                <div class="contact-form-wrapper reveal-right">
+                    <h2>Formular</h2>
+                    <form id="contactForm" class="contact-form" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactName">Name *</label>
+                                <input type="text" class="form-control" id="contactName" placeholder="Max Mustermann" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">E-Mail *</label>
+                                <input type="email" class="form-control" id="contactEmail" placeholder="max@example.com" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">Betreff</label>
+                            <select class="form-control" id="contactSubject">
+                                <option value="">Bitte wählen...</option>
+                                <option value="order">Frage zu meiner Bestellung</option>
+                                <option value="product">Produktfrage</option>
+                                <option value="return">Rückgabe / Reklamation</option>
+                                <option value="advice">Supplement-Beratung</option>
+                                <option value="other">Sonstiges</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Nachricht *</label>
+                            <textarea class="form-control" id="contactMessage" rows="6" placeholder="Deine Nachricht..." required></textarea>
+                        </div>
+                        <div class="form-group" style="display: flex; align-items: flex-start; gap: 0.75rem;">
+                            <input type="checkbox" id="contactPrivacy" style="margin-top: 4px; flex-shrink: 0;" required>
+                            <label for="contactPrivacy" style="font-size: 0.9rem; cursor: pointer;">Ich habe die <a href="datenschutz.html">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu. *</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Nachricht senden 📤</button>
+                        <div id="contactResult" style="margin-top: 1rem;"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo"><span>KÖHRER</span><span class="logo-accent">GAINZ</span></div>
+                    <p>Premium Fitness-Supplements für maximale Ergebnisse. Made in Austria. 💪</p>
+                    <div class="footer-social">
+                        <a href="#" title="Instagram">📸</a>
+                        <a href="#" title="TikTok">🎵</a>
+                        <a href="#" title="YouTube">🎬</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="products.html">Alle Produkte</a></li>
+                        <li><a href="products.html?cat=protein">Protein</a></li>
+                        <li><a href="products.html?cat=creatin">Creatin</a></li>
+                        <li><a href="cart.html">Warenkorb</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Info</h4>
+                    <ul>
+                        <li><a href="calculator.html">Rechner</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="ueber-uns.html">Über uns</a></li>
+                        <li><a href="versand.html">Versand &amp; Lieferung</a></li>
+                        <li><a href="kontakt.html" class="active">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Rechtliches</h4>
+                    <ul>
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                        <li><a href="agb.html">AGB</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2024 KöhrerGainz. Alle Rechte vorbehalten.</span>
+                <span>Mit ❤️ in Österreich entwickelt</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/cookie.js"></script>
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactName').value.trim();
+            const email = document.getElementById('contactEmail').value.trim();
+            const message = document.getElementById('contactMessage').value.trim();
+            const privacy = document.getElementById('contactPrivacy').checked;
+            const result = document.getElementById('contactResult');
+
+            if (!name || !email || !message) {
+                result.innerHTML = '<div class="info-box warning">Bitte fülle alle Pflichtfelder aus.</div>';
+                return;
+            }
+            if (!privacy) {
+                result.innerHTML = '<div class="info-box warning">Bitte stimme der Datenschutzerklärung zu.</div>';
+                return;
+            }
+
+            // Simulate form submission
+            const btn = this.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            btn.textContent = 'Wird gesendet...';
+            setTimeout(() => {
+                result.innerHTML = '<div class="info-box">✅ Deine Nachricht wurde erfolgreich gesendet! Wir melden uns innerhalb von 24 Stunden.</div>';
+                this.reset();
+                btn.disabled = false;
+                btn.textContent = 'Nachricht senden 📤';
+            }, 1500);
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+

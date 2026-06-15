@@ -1,0 +1,1 @@
+docker compose -p sommerprojekt_kohrer up -d --build

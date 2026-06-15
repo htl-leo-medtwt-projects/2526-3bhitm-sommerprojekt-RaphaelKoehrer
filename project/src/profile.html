@@ -1,0 +1,183 @@
+﻿<!DOCTYPE html>
+<html lang="de" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mein Profil | KöhrerGainz</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+            <!-- NAVIGATION -->
+    <nav class="navbar">
+    <div class="container">
+        <button class="hamburger" aria-label="Menü">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-current-page">HOME</div>
+        <a href="index.html" class="nav-logo">
+            <span>KÖHRER</span><span class="logo-accent">GAINZ</span>
+        </a>
+        <a href="cart.html" class="nav-icon-btn" title="Warenkorb">
+            🛒
+            <span class="cart-count" data-count="0">0</span>
+        </a>
+        <a href="auth.html" class="nav-icon-btn nav-user-btn" title="Login">👤</a>
+    </div>
+    <div class="nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="products.html">Produkte</a>
+        <a href="calculator.html">Rechner</a>
+        <a href="faq.html">FAQ</a>
+        <a href="ueber-uns.html">Über uns</a>
+    </div>
+</nav>
+<button class="theme-toggle" onclick="App.toggleTheme()" title="Theme wechseln" aria-label="Theme">☀️</button>
+    
+
+    <!-- CONTENT -->
+    <div class="page-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Mein <span class="text-accent">Profil</span></h1>
+            </div>
+
+            <div class="profile-layout">
+                <!-- Sidebar -->
+                <div class="profile-sidebar">
+                    <div class="profile-avatar" id="profileAvatar">?</div>
+                    <div class="profile-name" id="profileName">Laden...</div>
+                    <div class="profile-email" id="profileEmail"></div>
+
+                    <div class="profile-menu">
+                        <button class="profile-menu-item active" data-section="overview">
+                            📊 Übersicht
+                        </button>
+                        <button class="profile-menu-item" data-section="orders">
+                            📦 Bestellungen
+                        </button>
+                        <button class="profile-menu-item" data-section="settings">
+                            ⚙️ Einstellungen
+                        </button>
+                        <button class="profile-menu-item" data-section="logout" style="color: var(--danger);">
+                            🚪 Ausloggen
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="profile-content">
+                    <!-- Overview -->
+                    <div id="section-overview" class="profile-section">
+                        <h2>Willkommen zurück! 💪</h2>
+                        <div class="features-grid" style="margin-top: 1.5rem;">
+                            <a href="products.html" class="feature-card" style="background: var(--bg-secondary); border-radius: var(--radius-md); text-decoration: none; color: inherit;">
+                                <div class="feature-icon">🛒</div>
+                                <h3>Weiter shoppen</h3>
+                                <p>Entdecke neue Produkte</p>
+                            </a>
+                            <div class="feature-card" style="background: var(--bg-secondary); border-radius: var(--radius-md); cursor: pointer;" onclick="Profile.showSection('orders')">
+                                <div class="feature-icon">📦</div>
+                                <h3>Bestellungen</h3>
+                                <p>Deine Bestellhistorie</p>
+                            </div>
+                            <a href="calculator.html" class="feature-card" style="background: var(--bg-secondary); border-radius: var(--radius-md); text-decoration: none; color: inherit;">
+                                <div class="feature-icon">🧮</div>
+                                <h3>Rechner</h3>
+                                <p>Kalorien & Protein</p>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Orders -->
+                    <div id="section-orders" class="profile-section d-none">
+                        <h2>Meine Bestellungen</h2>
+                        <div id="ordersList"></div>
+                    </div>
+
+                    <!-- Settings -->
+                    <div id="section-settings" class="profile-section d-none">
+                        <h2>Einstellungen</h2>
+                        <form id="profileUpdateForm">
+                            <div class="form-group">
+                                <label for="settingsName">Name</label>
+                                <input type="text" class="form-control" id="settingsName">
+                            </div>
+                            <div class="form-group">
+                                <label for="settingsEmail">E-Mail</label>
+                                <input type="email" class="form-control" id="settingsEmail">
+                            </div>
+                            <div class="form-group">
+                                <label for="settingsPassword">Neues Passwort (leer lassen = keine Änderung)</label>
+                                <input type="password" class="form-control" id="settingsPassword" placeholder="Mind. 6 Zeichen">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Speichern 💾</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-logo"><span>KÖHRER</span><span class="logo-accent">GAINZ</span></div>
+                    <p>Premium Fitness-Supplements für maximale Ergebnisse. Made in Austria. 💪</p>
+                    <div class="footer-social">
+                        <a href="#" title="Instagram">📸</a>
+                        <a href="#" title="TikTok">🎵</a>
+                        <a href="#" title="YouTube">🎬</a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="products.html">Alle Produkte</a></li>
+                        <li><a href="products.html?cat=protein">Protein</a></li>
+                        <li><a href="products.html?cat=creatin">Creatin</a></li>
+                        <li><a href="cart.html">Warenkorb</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Info</h4>
+                    <ul>
+                        <li><a href="calculator.html">Rechner</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="ueber-uns.html">Über uns</a></li>
+                        <li><a href="versand.html">Versand &amp; Lieferung</a></li>
+                        <li><a href="kontakt.html">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Rechtliches</h4>
+                    <ul>
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                        <li><a href="agb.html">AGB</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2024 KöhrerGainz. Alle Rechte vorbehalten.</span>
+                <span>Mit ❤️ in Österreich entwickelt</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/profile.js"></script>
+
+    <script src="js/animations.js"></script>
+    <script src="js/cookie.js"></script>
+</body>
+</html>
+
+
+
+
+
