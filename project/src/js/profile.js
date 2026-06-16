@@ -16,17 +16,38 @@ const Profile = (() => {
         try {
             const result = await Api.getCurrentUser(userId);
             if (!result.success || !result.user) {
+                // API says user is invalid -> clear storage and redirect
+                localStorage.removeItem('kg_user_id');
+                localStorage.removeItem('kg_current_user');
                 window.location.href = 'auth.html';
                 return;
             }
             currentUser = result.user;
-            renderSidebar(currentUser);
-            bindMenuEvents();
-            showSection('overview');
-            await loadOrders();
+            localStorage.setItem('kg_current_user', JSON.stringify(currentUser));
         } catch (error) {
-            window.location.href = 'auth.html';
+            // Network/server error: fall back to cached user data instead of redirecting
+            const cached = localStorage.getItem('kg_current_user');
+            if (cached) {
+                try {
+                    currentUser = JSON.parse(cached);
+                } catch (e) {
+                    localStorage.removeItem('kg_user_id');
+                    localStorage.removeItem('kg_current_user');
+                    window.location.href = 'auth.html';
+                    return;
+                }
+            } else {
+                // No cache available, user must log in again
+                localStorage.removeItem('kg_user_id');
+                window.location.href = 'auth.html';
+                return;
+            }
         }
+
+        renderSidebar(currentUser);
+        bindMenuEvents();
+        showSection('overview');
+        await loadOrders();
     }
 
     function renderSidebar(user) {

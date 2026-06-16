@@ -3,7 +3,16 @@
  * =================================================================== */
 
 const Checkout = (() => {
-    function init() {
+    async function init() {
+        // Ensure product cache is populated before rendering prices
+        if (!window.productsCache || window.productsCache.length === 0) {
+            try {
+                window.productsCache = await Api.getProducts();
+            } catch(e) {
+                console.error('Could not load products for checkout:', e);
+            }
+        }
+
         const cartItems = Cart.getCartWithProducts();
         if (cartItems.length === 0) {
             window.location.href = 'cart.html';
@@ -140,16 +149,22 @@ const Checkout = (() => {
 
         const userId = localStorage.getItem('kg_user_id');
         const orderData = {
-            customer_name: name,
-            customer_email: email,
-            shipping_address: address,
-            shipping_city: city,
-            shipping_zip: zip,
-            shipping_country: country || 'Österreich',
+            // Nested shipping object as expected by orders.php
+            shipping: {
+                name,
+                email,
+                address,
+                city,
+                zip,
+                country: country || 'Österreich'
+            },
             payment_method: getSelectedPayment(),
             user_id: userId ? parseInt(userId) : null,
+            discount: discountAmount,
+            // PHP reads $item['productId'] and $item['productName'] (camelCase)
             items: cartItems.map(item => ({
-                product_id: item.productId,
+                productId: item.productId,
+                productName: item.product.name,
                 quantity: item.quantity,
                 price: parseFloat(item.product.price)
             }))
@@ -162,7 +177,11 @@ const Checkout = (() => {
                 sessionStorage.setItem('kg_last_order', JSON.stringify({
                     id: result.order_id,
                     total: result.total_amount,
-                    items: cartItems,
+                    items: cartItems.map(item => ({
+                        productName: item.product.name,
+                        price: parseFloat(item.product.price),
+                        quantity: item.quantity
+                    })),
                     createdAt: new Date().toISOString(),
                     shipping: { name, email, address, city, zip, country: country || 'Österreich' }
                 }));

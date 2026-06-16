@@ -26,8 +26,10 @@ const Auth = (() => {
             registerForm.addEventListener('submit', handleRegister);
         }
 
-        // Redirect if already logged in
-        if (window.location.pathname.includes('auth.html') && localStorage.getItem('kg_user_id')) {
+        // Redirect if already logged in (only if cached user data exists to avoid redirect loop)
+        if (window.location.pathname.includes('auth.html') &&
+            localStorage.getItem('kg_user_id') &&
+            localStorage.getItem('kg_current_user')) {
             window.location.href = 'profile.html';
         }
     }
@@ -109,3 +111,4 @@ const Auth = (() => {
 
     return { switchTab };
 })();
+ 

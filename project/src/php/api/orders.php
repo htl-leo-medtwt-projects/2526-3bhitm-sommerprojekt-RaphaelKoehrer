@@ -1,11 +1,6 @@
 <?php
 /* ===================================================================
  * KöhrerGainz - Orders API
- * ===================================================================
- * GET  /api/orders.php           → Bestellungen des Users
- * GET  /api/orders.php?id=1      → Einzelne Bestellung
- * POST /api/orders.php           → Neue Bestellung
- * PUT  /api/orders.php           → Status ändern (Admin)
  * =================================================================== */
 
 require_once __DIR__ . '/../config.php';
@@ -14,25 +9,17 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 // ===== GET: Bestellungen abrufen =====
 if ($method === 'GET') {
-    // Einzelne Bestellung
     if (!empty($_GET['id'])) {
         $stmt = $db->prepare("SELECT * FROM orders WHERE id = :id");
         $stmt->execute([':id' => (int)$_GET['id']]);
         $order = $stmt->fetch();
-
-        if (!$order) {
-            jsonResponse(['error' => 'Bestellung nicht gefunden.'], 404);
-        }
-
-        // Order Items laden
+        if (!$order) { jsonResponse(['error' => 'Bestellung nicht gefunden.'], 404); }
         $stmt = $db->prepare("SELECT * FROM order_items WHERE order_id = :id");
         $stmt->execute([':id' => $order['id']]);
         $order['items'] = $stmt->fetchAll();
-
         jsonResponse($order);
     }
 
-    // Alle Bestellungen (Admin) oder User-Bestellungen
     if (!empty($_SESSION['user_id'])) {
         if ($_SESSION['user_role'] === 'admin') {
             $stmt = $db->query("SELECT * FROM orders ORDER BY created_at DESC");
@@ -48,25 +35,20 @@ if ($method === 'GET') {
         exit;
     }
 
-        $orders = $stmt->fetchAll();
-
-        // Items für jede Bestellung laden
-        foreach ($orders as &$order) {
-            $stmt = $db->prepare("SELECT * FROM order_items WHERE order_id = :id");
-            $stmt->execute([':id' => $order['id']]);
-            $order['items'] = $stmt->fetchAll();
-        }
-
-        jsonResponse($orders);
-
-    jsonResponse([]);
+    $orders = $stmt->fetchAll();
+    foreach ($orders as &$order) {
+        $stmt2 = $db->prepare("SELECT * FROM order_items WHERE order_id = :id");
+        $stmt2->execute([':id' => $order['id']]);
+        $order['items'] = $stmt2->fetchAll();
+    }
+    jsonResponse($orders);
 }
 
 // ===== POST: Neue Bestellung =====
 if ($method === 'POST') {
     $data = getRequestBody();
 
-    $items = $data['items'] ?? [];
+    $items    = $data['items']    ?? [];
     $shipping = $data['shipping'] ?? [];
 
     if (empty($items)) {
@@ -78,53 +60,60 @@ if ($method === 'POST') {
         $subtotal += $item['price'] * $item['quantity'];
     }
 
-    $discount = floatval($data['discount'] ?? 0);
-    $total = $subtotal - $discount;
+    $discount     = floatval($data['discount'] ?? 0);
+    $total_amount = $subtotal - $discount;
 
     $db->beginTransaction();
 
     try {
-        $stmt = $db->prepare("INSERT INTO orders (user_id, shipping_name, shipping_email, shipping_address, shipping_city, shipping_zip, shipping_country, subtotal, discount, total) VALUES (:uid, :name, :email, :address, :city, :zip, :country, :subtotal, :discount, :total)");
+        // Spaltennamen laut DB-Schema: customer_name, customer_email, total_amount
+        $stmt = $db->prepare("
+            INSERT INTO orders
+                (user_id, customer_name, customer_email, shipping_address,
+                 shipping_city, shipping_zip, shipping_country, payment_method, total_amount)
+            VALUES
+                (:uid, :name, :email, :address,
+                 :city, :zip, :country, :payment, :total)
+        ");
         $stmt->execute([
-            ':uid' => $_SESSION['user_id'] ?? null,
-            ':name' => $shipping['name'] ?? '',
-            ':email' => $shipping['email'] ?? '',
+            ':uid'     => $_SESSION['user_id'] ?? null,
+            ':name'    => $shipping['name']    ?? '',
+            ':email'   => $shipping['email']   ?? '',
             ':address' => $shipping['address'] ?? '',
-            ':city' => $shipping['city'] ?? '',
-            ':zip' => $shipping['zip'] ?? '',
+            ':city'    => $shipping['city']    ?? '',
+            ':zip'     => $shipping['zip']     ?? '',
             ':country' => $shipping['country'] ?? 'Österreich',
-            ':subtotal' => $subtotal,
-            ':discount' => $discount,
-            ':total' => $total
+            ':payment' => $data['payment_method'] ?? 'bank',
+            ':total'   => $total_amount
         ]);
 
         $orderId = (int)$db->lastInsertId();
 
-        $stmtItem = $db->prepare("INSERT INTO order_items (order_id, product_id, product_name, price, quantity) VALUES (:oid, :pid, :pname, :price, :qty)");
+        // Spalte heißt unit_price (nicht price)
+        $stmtItem = $db->prepare("
+            INSERT INTO order_items (order_id, product_id, product_name, unit_price, quantity)
+            VALUES (:oid, :pid, :pname, :price, :qty)
+        ");
         foreach ($items as $item) {
             $stmtItem->execute([
-                ':oid' => $orderId,
-                ':pid' => $item['productId'],
+                ':oid'   => $orderId,
+                ':pid'   => $item['productId'],
                 ':pname' => $item['productName'],
                 ':price' => $item['price'],
-                ':qty' => $item['quantity']
+                ':qty'   => $item['quantity']
             ]);
 
-            // Bestand reduzieren
             $db->prepare("UPDATE products SET stock = stock - :qty WHERE id = :pid")
                ->execute([':qty' => $item['quantity'], ':pid' => $item['productId']]);
         }
 
         $db->commit();
 
-        // Hier: Bestätigungsmail senden
-        // mail($shipping['email'], 'Bestellbestätigung #' . $orderId, ...);
-
-        jsonResponse(['success' => true, 'order' => ['id' => $orderId, 'total' => $total]], 201);
+        jsonResponse(['success' => true, 'order_id' => $orderId, 'total_amount' => $total_amount], 201);
 
     } catch (Exception $e) {
         $db->rollBack();
-        jsonResponse(['success' => false, 'message' => 'Fehler bei der Bestellung.'], 500);
+        jsonResponse(['success' => false, 'message' => 'Fehler bei der Bestellung: ' . $e->getMessage()], 500);
     }
 }
 
@@ -134,11 +123,11 @@ if ($method === 'PUT') {
         jsonResponse(['error' => 'Zugriff verweigert.'], 403);
     }
 
-    $data = getRequestBody();
-    $orderId = $data['id'] ?? 0;
-    $status = $data['status'] ?? '';
+    $data   = getRequestBody();
+    $orderId = $data['id']     ?? 0;
+    $status  = $data['status'] ?? '';
 
-    $validStatuses = ['pending', 'shipped', 'completed', 'cancelled'];
+    $validStatuses = ['pending', 'processing', 'shipped', 'completed', 'cancelled'];
     if (!in_array($status, $validStatuses)) {
         jsonResponse(['success' => false, 'message' => 'Ungültiger Status.'], 400);
     }
